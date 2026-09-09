@@ -1,32 +1,57 @@
-I have decided to change the topic of the paper. Instead of continuing to sharpen the localization bound on the Taylor intermediate point, I am now focusing on a rigidity question that came directly out of that work.
+# Rigidity of the Midpoint Mean Value Property on Intervals of Fixed Length
 
-Why the change
+**Status:** submitted to the *National High School Journal of Science*, September 2026.
+**Author:** Maksim Stepnov
 
-The Taylor localization branch produced a classification result:
-the Taylor–Lagrange intermediate point satisfies θₙ = 1/(n+2) on every interval if and only if f is a polynomial of degree ≤ n+2.
-At n = 0 this is the classical statement that the mean value point is the midpoint of every interval exactly when f is a quadratic.
-That raised the obvious follow-up: what if the condition is only imposed on intervals of one fixed length instead of all intervals? The expected answer is that quadratics remain the only solutions.
-They do not. Rigidity fails, and there is an infinite family of non-polynomial solutions. That failure is more interesting than the bound I was originally improving, so the paper is now about this.
+---
 
-The new question
+## The question
 
-If the midpoint of [x, x+1] is a mean value point of f for every real x, must f be a quadratic?
+The mean value theorem guarantees that a point `ξ` exists where `f'(ξ)` equals the average rate of change, but says nothing about where. A classical theorem answers the extreme case: if the **midpoint** is a mean value point of *every* interval, then `f` is a polynomial of degree at most 2.
 
-Equivalently, characterize all solutions of
+That hypothesis quantifies over all pairs of endpoints at once, so it is unsurprising that it pins `f` down. This paper keeps only one interval length:
 
-f(x+1) - f(x) = f'(x + 1/2)
+```
+f(a + 1) - f(a) = f'(a + 1/2)     for every a in ℝ.          (1)
+```
 
-Substituting f = e^(λx) reduces this to the transcendental equation 2 sinh(λ/2) = λ, which is entire of order 1 and therefore has infinitely many complex roots. Each root yields a genuine non-polynomial solution; the quadratics turn out to be the triple root at λ = 0.
+**Must `f` be a quadratic?** Almost everyone I asked said "parabolas again," and so did I at first. The answer is no.
+
+---
+
+## Main results
+
+There is an infinite family of explicit counterexamples, the first being
+
+```
+u₁(x) = e^(α₁x) · cos(β₁x),    α₁ = 5.5373565660…,  β₁ = 14.9953525556…
+```
+
+a fast-growing oscillation completing one cycle roughly every 0.419 units. The point is not that counterexamples exist, but that they are **expensive**.
+
+**Theorem 2 (Rigidity below the threshold).** If `f` satisfies (1) and `|f(x)| ≤ M·e^(c|x|)` for some `c < α₁`, then `f` is a polynomial of degree at most 2. The constant `α₁` is sharp: `u₁` meets that bound and is not a polynomial.
+
+**Theorem 3 (Expansion theorem).** Every solution of at most exponential growth is a quadratic plus a *finite* combination of explicit exponential-oscillatory modes, one for each `αₖ ≤ c`. The sum is empty precisely when `c < α₁`.
+
+**Section 8.** Some growth hypothesis is unavoidable: there exist solutions of (1) growing faster than any exponential.
+
+---
+
+## Where the constant comes from
+
+Substituting `f(x) = e^(λx)` collapses the problem to
+
+```
+λ = 2 sinh(λ/2),    equivalently    sinh z = z,   z = λ/2.
+```
+
+Its **triple zero at the origin** is exactly what accounts for the classical solutions `1`, `x`, `x²`; the complex zeros give everything else. `α₁` is twice the smallest positive real part among them.
+
+The root analysis is elementary and self-contained. Separating real and imaginary parts yields a monotone relation `y = Y(x)` together with `tan y / y = tanh x / x`, which localizes every zero to an explicit interval and proves the growth rates `αₖ` are strictly increasing, **with no numerical input**.
 
 
 
-Contents
-WMVT - "A Localization Theorem for the Weighted Mean Value Theorem" (finished, under peer review)
-rigidity - characteristic root solver, counterexample verification, figures (in progress)
-paper -  the new paper (in progress)
 
 
-Timeline
-10.07.2026 — Started writing the Taylor localization paper
-26.07.2026 — Topic changed to the rigidity, believe it is more interesting then Taylor localiztion
-Expected finish date: 01.10.2026
+
+Maksim Stepnov · mstepnov29@gmail.com · [github.com/MaksimStepnov228](https://github.com/MaksimStepnov228)
